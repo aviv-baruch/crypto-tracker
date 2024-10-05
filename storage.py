@@ -36,10 +36,12 @@ class CSV:
                     self.cache[ticker] = rate
             print(f'Data imported successfully from {self.file_name}')
             self.used = True
+            return 1
         except FileNotFoundError:
             print(f"File {self.file_name} not found.")
         except Exception as e:
             print(f"An error occurred while importing: {e}")
+        return 0
 
     def read_cache(self):
         if not self.used and len(self.cache.keys()) == 0: #CSV never been loaded

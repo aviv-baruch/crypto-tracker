@@ -43,11 +43,14 @@ def get_specific_asset_rate(storage):
 
 def load_csv(storage):
     file_name = input("Pick a filename to import from: ")
-    storage = CSV(file_name)
-    storage.import_from_csv()
-    print("Imported the following CSV info:")
-    storage.read_cache()
-    return storage
+    local_storage = CSV(file_name)
+    import_status = local_storage.import_from_csv()
+    if import_status == 1:
+        print("Imported the following CSV info:")
+        local_storage.read_cache()
+        return local_storage
+    else:
+        return storage
 
 
 def print_watchlist(storage):
